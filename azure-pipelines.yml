@@ -7,8 +7,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  functionAppName: 'festive-guest-func-app'
-  azureSubscription: 'Azure-Service-Connection'
+  functionAppName: 'your-actual-function-app-name'  # Replace with your Function App name
+  azureSubscription: 'your-service-connection-name'  # Replace with your service connection
 
 stages:
 - stage: Build
