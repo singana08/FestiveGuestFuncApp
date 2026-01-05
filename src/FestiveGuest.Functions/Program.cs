@@ -4,6 +4,7 @@ using FestiveGuest.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()
@@ -17,7 +18,8 @@ var host = new HostBuilder()
         services.AddSingleton<IKeyVaultService>(provider =>
         {
             var cache = provider.GetRequiredService<IMemoryCache>();
-            return new KeyVaultService(keyVaultUrl, cache);
+            var logger = provider.GetRequiredService<ILogger<KeyVaultService>>();
+            return new KeyVaultService(keyVaultUrl, cache, logger);
         });
         
         // Add JWT service
